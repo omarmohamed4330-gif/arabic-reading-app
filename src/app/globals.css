@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    "Baloo Bhaijaan 2", "Cairo", "Tajawal", "Noto Naskh Arabic", "Segoe UI",
+    Tahoma, Arial, sans-serif;
+
+  --animate-pop: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-shake: shake 0.5s ease-in-out both;
+  --animate-float: float 3.2s ease-in-out infinite;
+  --animate-wiggle: wiggle 1.4s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 1.3s ease-out infinite;
+  --animate-star-in: star-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-fade-up: fade-up 0.5s ease-out both;
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.6);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-8px);
+    }
+    40%,
+    80% {
+      transform: translateX(8px);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55);
+    }
+    100% {
+      box-shadow: 0 0 0 18px rgba(239, 68, 68, 0);
+    }
+  }
+
+  @keyframes star-in {
+    0% {
+      transform: scale(0) rotate(-40deg);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-up {
+    0% {
+      transform: translateY(14px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  background-color: #fff7ed;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(253, 186, 116, 0.35) 0, transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(147, 197, 253, 0.35) 0, transparent 28%),
+    radial-gradient(circle at 50% 90%, rgba(196, 181, 253, 0.35) 0, transparent 32%);
+  background-attachment: fixed;
+}
+
+.reading-text {
+  line-height: 2.3;
+  letter-spacing: 0.01em;
+  word-spacing: 0.15em;
+}
+
+.reading-word {
+  display: inline-block;
+  padding: 0 0.15em;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease,
+    color 0.15s ease;
+}
+
+.reading-word:hover {
+  background-color: rgba(251, 191, 36, 0.25);
+  transform: translateY(-2px);
+}
+
+.reading-word.active {
+  background-color: #fbbf24;
+  color: #1e293b;
+  transform: scale(1.08);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.big-tap {
+  min-height: 3.25rem;
+  touch-action: manipulation;
+}
+
+.certificate-sign {
+  font-family: "Aref Ruqaa", "Baloo Bhaijaan 2", serif;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+@page {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    background-image: none !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .certificate {
+    box-shadow: none !important;
+    break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
